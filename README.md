@@ -6,7 +6,7 @@ Greeting a user with "Hello, world" is something that could be done in JavaScrip
 ## Using
 Clone the plugin
 
-    $ git clone https://github.com/don/cordova-plugin-hello.git
+    $ git clone https://github.com/nayan-dabhi/Cordova_Test_Plugin
 
 Create a new Cordova Project
 
