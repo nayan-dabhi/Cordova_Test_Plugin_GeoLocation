@@ -1,26 +1,28 @@
 package com.nd.bgGeoLocation;
 
 import org.apache.cordova.*;
+import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
 
 public class BgGeoLocation extends CordovaPlugin {
 
+    public static String userId;
+
     @Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("start")) {
+            JSONObject parameters = args.getJSONObject(0);
 
-        if (action.equals("greet")) {
-
-            String name = data.getString(0);
-            String message = "Hello, " + name;
+            userId = parameters.getString("userId");
+            Log.d("","");
+            String user_id = parameters.getString("userId");
+            String message = "User Id : " + user_id + ", Public User Id : " + userId;
             callbackContext.success(message);
 
             return true;
-
         } else {
-            
             return false;
-
         }
     }
 }
