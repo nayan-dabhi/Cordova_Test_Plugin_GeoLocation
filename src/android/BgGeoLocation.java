@@ -15,11 +15,10 @@ public class BgGeoLocation extends CordovaPlugin {
             JSONObject parameters = args.getJSONObject(0);
 
             userId = parameters.getString("userId");
-            Log.d("","");
             String user_id = parameters.getString("userId");
             String message = "User Id : " + user_id + ", Public User Id : " + userId;
-            callbackContext.success(message);
 
+            callbackContext.success(message);
             return true;
         } else {
             return false;
