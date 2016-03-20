@@ -28,7 +28,7 @@ public class BgGeoLocation extends CordovaPlugin {
 
             userId = parameters.getString("userId");
             postURL = parameters.getString("postURL");
-            timerInterval = parameters.getString("timerInterval");
+            timerInterval = parameters.getInteger("timerInterval");
 
             initialize(callbackContext);
             return true;
