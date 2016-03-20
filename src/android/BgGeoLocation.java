@@ -8,6 +8,7 @@ import org.json.JSONException;
 public class BgGeoLocation extends CordovaPlugin {
 
     public static String userId;
+    public static String postURL;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -15,10 +16,9 @@ public class BgGeoLocation extends CordovaPlugin {
             JSONObject parameters = args.getJSONObject(0);
 
             userId = parameters.getString("userId");
-            String user_id = parameters.getString("userId");
-            String message = "User Id : " + user_id + ", Public User Id : " + userId;
+            postURL = parameters.getString("postURL");
 
-            callbackContext.success(message);
+            callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL);
             return true;
         } else {
             return false;
