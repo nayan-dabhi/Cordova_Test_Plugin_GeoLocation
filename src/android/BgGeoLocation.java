@@ -28,6 +28,7 @@ public class BgGeoLocation extends CordovaPlugin {
             postURL = parameters.getString("postURL");
 
             initialize(callbackContext);
+            return true;
         } else {
             return false;
         }
