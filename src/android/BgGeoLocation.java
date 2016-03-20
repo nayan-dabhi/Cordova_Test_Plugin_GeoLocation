@@ -35,6 +35,5 @@ public class BgGeoLocation extends CordovaPlugin {
 
     private void initialize(CallbackContext callbackContext) {
         callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL);
-        return true;
     }
 }
