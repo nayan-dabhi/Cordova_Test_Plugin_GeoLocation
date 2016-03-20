@@ -1,4 +1,4 @@
-package com.solution.enterprises;
+package com.nd.bgGeoLocation;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
