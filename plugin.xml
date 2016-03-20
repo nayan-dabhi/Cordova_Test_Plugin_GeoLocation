@@ -27,6 +27,7 @@
     </config-file>
 
     <source-file src="src/android/BgGeoLocation.java" target-dir="src/com/nd/bgGeoLocation/"/>
+    <source-file src="src/android/BackgroundLocationReceiver.java" target-dir="src/com/nd/bgGeoLocation/"/>
   </platform>
 
 </plugin>
