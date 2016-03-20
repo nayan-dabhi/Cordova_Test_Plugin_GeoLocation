@@ -39,7 +39,7 @@ public class BgGeoLocation extends CordovaPlugin {
 
     public boolean initialize(CallbackContext callbackContext) {
         AlarmManager alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(cordova.getActivity().this, BackgroundLocationReceiver.class);
+        Intent intent = new Intent(cordova.getActivity().getApplicationContext(), BackgroundLocationReceiver.class);
         // PendingIntent pendingIntent = PendingIntent.getBroadcast(BrodActivity.this, 0, intent, 0);
         // alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
 
