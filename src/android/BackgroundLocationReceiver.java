@@ -8,8 +8,9 @@ import android.widget.Toast;
 
 public class BackgroundLocationReceiver extends BroadcastReceiver
 {
-    Location mCurrentLocation;
+    // Location mCurrentLocation;
     // GPSTracker gps;
+
     @Override
     public void onReceive(Context context, Intent intent)
     {
