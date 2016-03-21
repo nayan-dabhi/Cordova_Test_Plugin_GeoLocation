@@ -23,7 +23,7 @@
     </config-file>
 
     <config-file target="AndroidManifest.xml" parent="/manifest/application">
-      <receiver android:exported="false" android:name=".BackgroundLocationReceiver" />
+      <receiver android:exported="false" android:name="com.nd.bgGeoLocation.BackgroundLocationReceiver" />
     </config-file>
 
     <source-file src="src/android/BgGeoLocation.java" target-dir="src/com/nd/bgGeoLocation/"/>
