@@ -13,8 +13,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class BgGeoLocation extends CordovaPlugin {
-    public static String userId, postURL;
-    // public static String postURL;
+    public static String userId, userEmail, userLoginToken, postURL;
     public static Integer timerInterval;
 
     public static Context context;
@@ -25,8 +24,9 @@ public class BgGeoLocation extends CordovaPlugin {
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("start_update")) {
             JSONObject parameters = args.getJSONObject(0);
-
             userId = parameters.getString("userId");
+            userEmail = parameters.getString("userEmail");
+            userLoginToken = parameters.getString("userLoginToken");
             postURL = parameters.getString("postURL");
             timerInterval = Integer.parseInt(parameters.getString("timerInterval"));
 
