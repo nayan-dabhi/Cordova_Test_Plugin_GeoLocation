@@ -25,6 +25,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
         } else {
             // GPS or Network is not enabled
             // gps.showSettingsAlert();
+            Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
     }
 }
