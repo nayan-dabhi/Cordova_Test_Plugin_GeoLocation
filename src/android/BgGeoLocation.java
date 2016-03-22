@@ -19,8 +19,8 @@ public class BgGeoLocation extends CordovaPlugin {
     public static Integer timerInterval;
 
     public static Context context;
-    public static AlarmManager alarmManager  = null;
-    public static PendingIntent pendingIntent = null;
+    public static AlarmManager alarmManager;
+    public static PendingIntent pendingIntent;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -41,17 +41,12 @@ public class BgGeoLocation extends CordovaPlugin {
     public boolean initialize(CallbackContext callbackContext) {
         context = cordova.getActivity().getApplicationContext();
 
-        if(pendingIntent == null){
-            alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(context, BackgroundLocationReceiver.class);
-            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
-            // callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL + ", \n Interval : " + timerInterval);
-            callbackContext.success("AlarmManager is initialize.");
-        } else {
-            callbackContext.success("AlarmManager already initialize.");
-        }
+        alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, BackgroundLocationReceiver.class);
+        pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
 
+        callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL + ", \n Interval : " + timerInterval);
         return true;
     }
 }
