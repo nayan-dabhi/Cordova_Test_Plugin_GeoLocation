@@ -14,21 +14,20 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     @Override
     public void onReceive(Context context, Intent intent)
     {
-        Toast.makeText(context, "Your Location is ", Toast.LENGTH_LONG).show();
+        // Toast.makeText(context, "Your Location is ", Toast.LENGTH_LONG).show();
+        gps = new GPSTracker(context);
 
-        // gps = new GPSTracker(context);
+        check if GPS enabled
+        if(gps.canGetLocation()){
+            double latitude = gps.getLatitude();
+            double longitude = gps.getLongitude();
 
-        // check if GPS enabled
-        // if(gps.canGetLocation()){
-        //     double latitude = gps.getLatitude();
-        //     double longitude = gps.getLongitude();
-
-        //     Toast.makeText(context, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-        // } else {
+            Toast.makeText(context, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+        } else {
             // can't get location
             // GPS or Network is not enabled
             // Ask user to enable GPS/network in settings
             // gps.showSettingsAlert();
-        // }
+        }
     }
 }
