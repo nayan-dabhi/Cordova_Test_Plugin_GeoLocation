@@ -16,14 +16,12 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     {
         gps = new GPSTracker(context);
 
-        // check if GPS enabled
         if(gps.canGetLocation()){
             double latitude = gps.getLatitude();
             double longitude = gps.getLongitude();
 
             Toast.makeText(context, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
         } else {
-            // GPS or Network is not enabled
             Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
     }
