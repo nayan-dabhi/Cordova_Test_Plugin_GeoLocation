@@ -41,7 +41,7 @@ public class BgGeoLocation extends CordovaPlugin {
         }
     }
 
-    public boolean initialize(CallbackContext callbackContext) {
+    public void initialize(CallbackContext callbackContext) {
         context = cordova.getActivity().getApplicationContext();
 
         alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
@@ -50,12 +50,12 @@ public class BgGeoLocation extends CordovaPlugin {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
 
         callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL + ", \n Interval : " + timerInterval);
-        return true;
+        // return true;
     }
 
-    public boolean stopAlarm(CallbackContext callbackContext) {
+    public void stopAlarm(CallbackContext callbackContext) {
         alarmManager.cancel(pendingIntent);
         callbackContext.success("Alarm Stopped.");
-        return true;
+        // return true;
     }
 }
