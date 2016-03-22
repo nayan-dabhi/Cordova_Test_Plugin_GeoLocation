@@ -52,7 +52,7 @@ public class GPSTracker extends Service implements LocationListener {
 				e.printStackTrace();
 			}
 
-			if (!isGPSEnabled || !isNetworkEnabled) {
+			if (!isGPSEnabled && !isNetworkEnabled) {
 				this.canGetLocation = false;
 			} else {
 				this.canGetLocation = true;
