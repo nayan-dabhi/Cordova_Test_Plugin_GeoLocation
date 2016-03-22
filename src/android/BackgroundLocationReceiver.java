@@ -28,7 +28,5 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             // Ask user to enable GPS/network in settings
             // gps.showSettingsAlert();
         }
-
-        Toast.makeText(context, "Your Location is ", Toast.LENGTH_LONG).show();
     }
 }
