@@ -9,6 +9,7 @@ import android.widget.Toast;
 public class BackgroundLocationReceiver extends BroadcastReceiver
 {
     Location mCurrentLocation;
+    BgGeoLocation bgGeoLoc;
     GPSTracker gps;
 
     @Override
@@ -21,6 +22,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             double longitude = gps.getLongitude();
 
             Toast.makeText(context, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "UserId is - " + bgGeoLoc.userId, Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
