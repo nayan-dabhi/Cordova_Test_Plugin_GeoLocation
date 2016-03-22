@@ -53,7 +53,7 @@ public class BgGeoLocation extends CordovaPlugin {
         try {
             response.put("status", "success");
         } catch (JSONException e) {
-            response.put("status", "failed");
+            // response.put("status", "failed");
         }
         callbackContext.success(response);
     }
@@ -64,7 +64,7 @@ public class BgGeoLocation extends CordovaPlugin {
         try {
             response.put("status", "success");
         } catch (JSONException e) {
-            response.put("status", "failed");
+            // response.put("status", "failed");
         }
         callbackContext.success(response);
     }
