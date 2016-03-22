@@ -19,8 +19,8 @@ public class BgGeoLocation extends CordovaPlugin {
     public static Integer timerInterval;
 
     public static Context context;
-    public static AlarmManager alarmManager = null;
-    public static PendingIntent pendingIntent;
+    public static AlarmManager alarmManager  = null;
+    public static PendingIntent pendingIntent = null;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -41,7 +41,7 @@ public class BgGeoLocation extends CordovaPlugin {
     public boolean initialize(CallbackContext callbackContext) {
         context = cordova.getActivity().getApplicationContext();
 
-        if(alarmManager == null){
+        if(pendingIntent == null){
             alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(context, BackgroundLocationReceiver.class);
             pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
