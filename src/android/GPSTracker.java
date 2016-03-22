@@ -42,16 +42,14 @@ public class GPSTracker extends Service implements LocationListener {
 
 			try {
 				isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-				Toast.makeText(mContext, "Gps Enabled : "+String.valueOf(isGPSEnabled), Toast.LENGTH_LONG).show();
-			} catch (Exception ex){
-				Toast.makeText(mContext, "Gps Exception", Toast.LENGTH_LONG).show();
+			} catch (Exception e){
+				e.printStackTrace();
 			}
 
 			try {
 				isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-				Toast.makeText(mContext, "Network Enabled : "+String.valueOf(isNetworkEnabled), Toast.LENGTH_LONG).show();
-			} catch (Exception ex){
-				Toast.makeText(mContext, "Network Exception", Toast.LENGTH_LONG).show();
+			} catch (Exception e){
+				e.printStackTrace();
 			}
 
 			if (!isGPSEnabled || !isNetworkEnabled) {

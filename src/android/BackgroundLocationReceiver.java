@@ -24,7 +24,6 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             Toast.makeText(context, "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
         } else {
             // GPS or Network is not enabled
-            // gps.showSettingsAlert();
             Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
     }
