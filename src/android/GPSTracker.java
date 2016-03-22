@@ -17,14 +17,10 @@ import android.widget.Toast;
 public class GPSTracker extends Service implements LocationListener {
 
 	private final Context mContext;
+	protected LocationManager locationManager = null;
 
-	// flag for GPS status
 	boolean isGPSEnabled = false;
-
-	// flag for network status
 	boolean isNetworkEnabled = false;
-
-	// flag for GPS status
 	boolean canGetLocation = false;
 
 	Location location; // location
@@ -36,9 +32,6 @@ public class GPSTracker extends Service implements LocationListener {
 
 	// The minimum time between updates in milliseconds
 	private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1; // 1 minute
-
-	// Declaring a Location Manager
-	protected LocationManager locationManager = null;
 
 	public GPSTracker(Context context) {
 		this.mContext = context;
@@ -114,45 +107,27 @@ public class GPSTracker extends Service implements LocationListener {
 
 		return location;
 	}
-	
-	/**
-	 * Stop using GPS listener
-	 * Calling this function will stop using GPS in your app
-	 * */
+
 	public void stopUsingGPS(){
 		if(locationManager != null){
 			locationManager.removeUpdates(GPSTracker.this);
 		}		
 	}
-	
-	/**
-	 * Function to get latitude
-	 * */
+
 	public double getLatitude(){
 		if(location != null){
 			latitude = location.getLatitude();
 		}
-		
-		// return latitude
 		return latitude;
 	}
-	
-	/**
-	 * Function to get longitude
-	 * */
+
 	public double getLongitude(){
 		if(location != null){
 			longitude = location.getLongitude();
 		}
-		
-		// return longitude
 		return longitude;
 	}
-	
-	/**
-	 * Function to check GPS/wifi enabled
-	 * @return boolean
-	 * */
+
 	public boolean canGetLocation() {
 		return this.canGetLocation;
 	}
@@ -177,5 +152,4 @@ public class GPSTracker extends Service implements LocationListener {
 	public IBinder onBind(Intent arg0) {
 		return null;
 	}
-
 }
