@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.location.Location;
 import android.widget.Toast;
 
+import android.os.AsyncTask;
+
 public class BackgroundLocationReceiver extends BroadcastReceiver
 {
     Location mCurrentLocation;
