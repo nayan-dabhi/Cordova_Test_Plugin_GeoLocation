@@ -52,11 +52,12 @@ public class BgGeoLocation extends CordovaPlugin {
 
             JSONObject response = new JSONObject();
             response.put("status", "success");
+            callbackContext.success(response);
         } catch (Exception e){
             JSONObject response = new JSONObject();
             response.put("status", "failed");
+            callbackContext.success(response);
         }
-        callbackContext.success(response);
     }
 
     public void stopAlarm(CallbackContext callbackContext) {
@@ -64,10 +65,11 @@ public class BgGeoLocation extends CordovaPlugin {
             alarmManager.cancel(pendingIntent);
             JSONObject response = new JSONObject();
             response.put("status", "success");
+            callbackContext.success(response);
         } catch (Exception e){
             JSONObject response = new JSONObject();
             response.put("status", "failed");
+            callbackContext.success(response);
         }
-        callbackContext.success(response);
     }
 }
