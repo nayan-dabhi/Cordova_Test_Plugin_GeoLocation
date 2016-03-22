@@ -42,20 +42,32 @@ public class BgGeoLocation extends CordovaPlugin {
     }
 
     public void initialize(CallbackContext callbackContext) {
-        context = cordova.getActivity().getApplicationContext();
+        try {
+            context = cordova.getActivity().getApplicationContext();
 
-        alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, BackgroundLocationReceiver.class);
-        pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
+            alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context, BackgroundLocationReceiver.class);
+            pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
 
-        callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL + ", \n Interval : " + timerInterval);
-        // return true;
+            JSONObject response = new JSONObject();
+            response.put("status", "success");
+        } catch (Exception e){
+            JSONObject response = new JSONObject();
+            response.put("status", "failed");
+        }
+        callbackContext.success(response);
     }
 
     public void stopAlarm(CallbackContext callbackContext) {
-        alarmManager.cancel(pendingIntent);
-        callbackContext.success("Alarm Stopped.");
-        // return true;
+        try {
+            alarmManager.cancel(pendingIntent);
+            JSONObject response = new JSONObject();
+            response.put("status", "success");
+        } catch (Exception e){
+            JSONObject response = new JSONObject();
+            response.put("status", "failed");
+        }
+        callbackContext.success(response);
     }
 }
