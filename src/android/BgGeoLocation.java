@@ -35,6 +35,7 @@ public class BgGeoLocation extends CordovaPlugin {
             return true;
         }if (action.equals("stop_update")) {
             stopAlarm(callbackContext);
+            return true;
         } else {
             return false;
         }
