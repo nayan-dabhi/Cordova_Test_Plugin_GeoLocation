@@ -13,8 +13,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class BgGeoLocation extends CordovaPlugin {
-    public static String userId;
-    public static String postURL;
+    public static String userId, postURL;
+    // public static String postURL;
     public static Integer timerInterval;
 
     public static Context context;
