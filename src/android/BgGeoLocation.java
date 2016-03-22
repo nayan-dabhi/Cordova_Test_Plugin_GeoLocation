@@ -50,14 +50,22 @@ public class BgGeoLocation extends CordovaPlugin {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
 
         JSONObject response = new JSONObject();
-        response.put("status", "success");
+        try {
+            response.put("status", "success");
+        } catch (JSONException e) {
+            response.put("status", "failed");
+        }
         callbackContext.success(response);
     }
 
     public void stopAlarm(CallbackContext callbackContext) {
         alarmManager.cancel(pendingIntent);
         JSONObject response = new JSONObject();
-        response.put("status", "success");
+        try {
+            response.put("status", "success");
+        } catch (JSONException e) {
+            response.put("status", "failed");
+        }
         callbackContext.success(response);
     }
 }
