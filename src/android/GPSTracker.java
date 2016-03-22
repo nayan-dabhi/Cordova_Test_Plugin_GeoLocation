@@ -42,14 +42,12 @@ public class GPSTracker extends Service implements LocationListener {
 
 			try {
 				isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-				Toast.makeText(mContext, "Gps Enabled : "+String.valueOf(isGPSEnabled), Toast.LENGTH_LONG).show();
 			} catch (Exception e){
 				e.printStackTrace();
 			}
 
 			try {
 				isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-				Toast.makeText(mContext, "Network Enabled : "+String.valueOf(isNetworkEnabled), Toast.LENGTH_LONG).show();
 			} catch (Exception e){
 				e.printStackTrace();
 			}
@@ -57,25 +55,6 @@ public class GPSTracker extends Service implements LocationListener {
 			if (!isGPSEnabled && !isNetworkEnabled) {
 				this.canGetLocation = false;
 			} else {
-				this.canGetLocation = true;
-
-				if (isNetworkEnabled) {
-					locationManager.requestLocationUpdates(
-						LocationManager.NETWORK_PROVIDER,
-						MIN_TIME_BW_UPDATES,
-						MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-					Log.d("Network", "Network");
-
-					if (locationManager != null) {
-						location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-						if (location != null) {
-							latitude = location.getLatitude();
-							longitude = location.getLongitude();
-						}
-					}
-				}
-
-				// if GPS Enabled get lat/long using GPS Services
 				if (isGPSEnabled) {
 					if (location == null) {
 						locationManager.requestLocationUpdates(
@@ -89,12 +68,33 @@ public class GPSTracker extends Service implements LocationListener {
 							if (location != null) {
 								latitude = location.getLatitude();
 								longitude = location.getLongitude();
+								this.canGetLocation = true;
+							} else {
+								this.canGetLocation = false;
 							}
 						}
 					}
+				} else if (isNetworkEnabled) {
+					locationManager.requestLocationUpdates(
+						LocationManager.NETWORK_PROVIDER,
+						MIN_TIME_BW_UPDATES,
+						MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+					Log.d("Network", "Network");
+
+					if (locationManager != null) {
+						location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+						if (location != null) {
+							latitude = location.getLatitude();
+							longitude = location.getLongitude();
+							this.canGetLocation = true;
+						} else {
+							this.canGetLocation = false;
+						}
+					}
+				} else {
+					this.canGetLocation = false;
 				}
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
