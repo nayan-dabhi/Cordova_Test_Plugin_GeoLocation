@@ -33,6 +33,8 @@ public class BgGeoLocation extends CordovaPlugin {
 
             initialize(callbackContext);
             return true;
+        }if (action.equals("stop_update")) {
+            stopAlarm(callbackContext);
         } else {
             return false;
         }
@@ -47,6 +49,12 @@ public class BgGeoLocation extends CordovaPlugin {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), timerInterval, pendingIntent);
 
         callbackContext.success(" User Id : " + userId + ", \n postURL : "+ postURL + ", \n Interval : " + timerInterval);
+        return true;
+    }
+
+    public boolean stopAlarm(CallbackContext callbackContext) {
+        alarmManager.cancel(pendingIntent);
+        callbackContext.success("Alarm Stopped.");
         return true;
     }
 }
