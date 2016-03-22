@@ -24,24 +24,24 @@ public class BgGeoLocation extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("start")) {
+        if (action.equals("start_update")) {
             JSONObject parameters = args.getJSONObject(0);
 
             userId = parameters.getString("userId");
             postURL = parameters.getString("postURL");
             timerInterval = Integer.parseInt(parameters.getString("timerInterval"));
 
-            initialize(callbackContext);
+            start_update(callbackContext);
             return true;
         }if (action.equals("stop_update")) {
-            stopAlarm(callbackContext);
+            stop_update(callbackContext);
             return true;
         } else {
             return false;
         }
     }
 
-    public void initialize(CallbackContext callbackContext) {
+    public void start_update(CallbackContext callbackContext) {
         context = cordova.getActivity().getApplicationContext();
 
         alarmManager = (AlarmManager) cordova.getActivity().getSystemService(Context.ALARM_SERVICE);
@@ -58,7 +58,7 @@ public class BgGeoLocation extends CordovaPlugin {
         callbackContext.success(response);
     }
 
-    public void stopAlarm(CallbackContext callbackContext) {
+    public void stop_update(CallbackContext callbackContext) {
         alarmManager.cancel(pendingIntent);
         JSONObject response = new JSONObject();
         try {
