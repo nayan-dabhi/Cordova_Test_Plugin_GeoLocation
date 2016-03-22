@@ -32,7 +32,7 @@ public class BgGeoLocation extends CordovaPlugin {
 
             start_update(callbackContext);
             return true;
-        }if (action.equals("stop_update")) {
+        } else if (action.equals("stop_update")) {
             stop_update(callbackContext);
             return true;
         } else {
