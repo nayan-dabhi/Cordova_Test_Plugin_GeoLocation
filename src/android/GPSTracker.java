@@ -41,7 +41,6 @@ public class GPSTracker extends Service implements LocationListener {
 			}
 
 			try {
-				// getting GPS status
 				isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 				Toast.makeText(mContext, "Gps Enabled : "+String.valueOf(isGPSEnabled), Toast.LENGTH_LONG).show();
 			} catch (Exception ex){
@@ -49,7 +48,6 @@ public class GPSTracker extends Service implements LocationListener {
 			}
 
 			try {
-				// getting network status
 				isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 				Toast.makeText(mContext, "Network Enabled : "+String.valueOf(isNetworkEnabled), Toast.LENGTH_LONG).show();
 			} catch (Exception ex){
@@ -57,10 +55,8 @@ public class GPSTracker extends Service implements LocationListener {
 			}
 
 			if (!isGPSEnabled || !isNetworkEnabled) {
-				// no network provider is enabled
 				this.canGetLocation = false;
 			} else {
-				Log.d("Called", "Else Condition.");
 				this.canGetLocation = true;
 				if (isNetworkEnabled) {
 					locationManager.requestLocationUpdates(
@@ -77,6 +73,7 @@ public class GPSTracker extends Service implements LocationListener {
 						}
 					}
 				}
+
 				// if GPS Enabled get lat/long using GPS Services
 				if (isGPSEnabled) {
 					if (location == null) {
