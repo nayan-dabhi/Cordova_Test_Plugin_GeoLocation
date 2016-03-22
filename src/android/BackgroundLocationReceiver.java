@@ -7,12 +7,13 @@ import android.location.Location;
 import android.widget.Toast;
 
 import android.os.AsyncTask;
+import android.net.ConnectivityManager;
 
 public class BackgroundLocationReceiver extends BroadcastReceiver
 {
-    Location mCurrentLocation;
-    BgGeoLocation bgGeoLoc;
     GPSTracker gps;
+    BgGeoLocation bgGeoLoc;
+    Location mCurrentLocation;
 
     @Override
     public void onReceive(Context context, Intent intent)
@@ -32,6 +33,29 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
     }
+
+    // public class Utils {
+    //     ConnectivityManager mConnectivityManager;
+    //     NetworkInfo mNetworkInfo;
+    //     boolean isNetError;
+
+    //     public boolean check_Internet()
+    //     {
+    //         mConnectivityManager= (ConnectivityManager)mActivity.getSystemService(Context.CONNECTIVITY_SERVICE);
+    //         mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+
+    //         if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting())
+    //         {
+    //             isNetError = false;
+    //             return true;
+    //         }
+    //         else
+    //         {
+    //             isNetError = true;
+    //             return false;
+    //         }
+    //     }
+    // }
 
     public class updateLocation extends AsyncTask<Void, Void, Void> {
         @Override
