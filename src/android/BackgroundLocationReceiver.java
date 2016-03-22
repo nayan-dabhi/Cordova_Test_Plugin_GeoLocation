@@ -30,4 +30,21 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
     }
+
+    public class updateLocation extends AsyncTask<Void, Void, Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... arg1) {
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void arg1) {
+            super.onPostExecute(arg1);
+        }
+    }
 }
