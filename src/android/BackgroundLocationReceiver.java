@@ -53,7 +53,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     }
 
     public class Utils {
-        public boolean check_Internet(context)
+        public boolean check_Internet(Context context)
         {
             mConnectivityManager= (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
             mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
