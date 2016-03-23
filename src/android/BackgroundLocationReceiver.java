@@ -47,8 +47,8 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
 
                 nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("user_id", bgGeoLoc.userId));
-                nameValuePairs.add(new BasicNameValuePair("latitude", latitude));
-                nameValuePairs.add(new BasicNameValuePair("longitude", longitude));
+                nameValuePairs.add(new BasicNameValuePair("latitude", latitude.toString()));
+                nameValuePairs.add(new BasicNameValuePair("longitude", longitude.toString()));
 
                 Toast.makeText(context, nameValuePairs.toString(), Toast.LENGTH_LONG).show();
             } else {
