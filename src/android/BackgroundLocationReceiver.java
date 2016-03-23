@@ -10,6 +10,9 @@ import android.os.AsyncTask;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+
 public class BackgroundLocationReceiver extends BroadcastReceiver
 {
     GPSTracker gps;
@@ -17,6 +20,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     Location mCurrentLocation;
     ConnectivityManager mConnectivityManager;
     NetworkInfo mNetworkInfo;
+    List<NameValuePair> nameValuePairs;
 
     @Override
     public void onReceive(Context context, Intent intent)
@@ -35,8 +39,15 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
 
             mConnectivityManager= (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
             mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+
             if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting()){
-                Toast.makeText(context, "Internet is on.", Toast.LENGTH_LONG).show(); 
+                // Toast.makeText(context, "Internet is on.", Toast.LENGTH_LONG).show();
+
+                nameValuePairs.add(new BasicNameValuePair("user_id", bgGeoLoc.userId));
+                nameValuePairs.add(new BasicNameValuePair("latitude", latitude));
+                nameValuePairs.add(new BasicNameValuePair("longitude", longitude));
+
+                Toast.makeText(context, nameValuePairs.toString(), Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(context, "Internet is off.", Toast.LENGTH_LONG).show();
             }
@@ -44,29 +55,6 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             Toast.makeText(context, "Location is off.", Toast.LENGTH_LONG).show();
         }
     }
-
-    // public class Utils {
-    //     ConnectivityManager mConnectivityManager;
-    //     NetworkInfo mNetworkInfo;
-    //     boolean isNetError;
-
-    //     public boolean check_Internet()
-    //     {
-    //         mConnectivityManager= (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
-    //         mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-
-    //         if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting())
-    //         {
-    //             isNetError = false;
-    //             return true;
-    //         }
-    //         else
-    //         {
-    //             isNetError = true;
-    //             return false;
-    //         }
-    //     }
-    // }
 
     public class updateLocation extends AsyncTask<Void, Void, Void> {
         @Override
