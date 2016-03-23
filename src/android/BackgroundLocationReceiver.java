@@ -16,7 +16,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     BgGeoLocation bgGeoLoc;
     Location mCurrentLocation;
     Utils utils;
-    public final Context mContext;
+    public Context mContext;
 
     @Override
     public void onReceive(Context context, Intent intent)
