@@ -15,14 +15,13 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     GPSTracker gps;
     BgGeoLocation bgGeoLoc;
     Location mCurrentLocation;
-    Utils utils;
-    public Context mContext;
+    ConnectivityManager mConnectivityManager;
+    NetworkInfo mNetworkInfo;
 
     @Override
     public void onReceive(Context context, Intent intent)
     {
         gps = new GPSTracker(context);
-        mContext = context;
 
         if(gps.canGetLocation()){
             double latitude = gps.getLatitude();
@@ -34,38 +33,40 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             // Toast.makeText(context, "UserLoginToken is - " + bgGeoLoc.userLoginToken, Toast.LENGTH_LONG).show();
             // Toast.makeText(context, "Post URL - " + bgGeoLoc.postURL, Toast.LENGTH_LONG).show();
 
-            // if(utils.check_Internet()){
-            //     Toast.makeText(context, "Internet connection is available.", Toast.LENGTH_LONG).show();
-            // } else {
-            //     Toast.makeText(context, "Internet connection is not available.", Toast.LENGTH_LONG).show();
-            // }
-        } else {
-            Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    public class Utils {
-        ConnectivityManager mConnectivityManager;
-        NetworkInfo mNetworkInfo;
-        boolean isNetError;
-
-        public boolean check_Internet()
-        {
-            mConnectivityManager= (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+            mConnectivityManager= (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
             mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
-
-            if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting())
-            {
-                isNetError = false;
-                return true;
+            if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting()){
+                Toast.makeText(context, "Internet is on.", Toast.LENGTH_LONG).show(); 
+            } else {
+                Toast.makeText(context, "Internet is off.", Toast.LENGTH_LONG).show();
             }
-            else
-            {
-                isNetError = true;
-                return false;
-            }
+        } else {
+            Toast.makeText(context, "Location is off.", Toast.LENGTH_LONG).show();
         }
     }
+
+    // public class Utils {
+    //     ConnectivityManager mConnectivityManager;
+    //     NetworkInfo mNetworkInfo;
+    //     boolean isNetError;
+
+    //     public boolean check_Internet()
+    //     {
+    //         mConnectivityManager= (ConnectivityManager)mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+    //         mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+
+    //         if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting())
+    //         {
+    //             isNetError = false;
+    //             return true;
+    //         }
+    //         else
+    //         {
+    //             isNetError = true;
+    //             return false;
+    //         }
+    //     }
+    // }
 
     public class updateLocation extends AsyncTask<Void, Void, Void> {
         @Override
