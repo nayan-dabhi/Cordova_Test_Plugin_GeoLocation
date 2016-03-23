@@ -33,11 +33,12 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             // Toast.makeText(context, "UserEmail is - " + bgGeoLoc.userEmail, Toast.LENGTH_LONG).show();
             // Toast.makeText(context, "UserLoginToken is - " + bgGeoLoc.userLoginToken, Toast.LENGTH_LONG).show();
             // Toast.makeText(context, "Post URL - " + bgGeoLoc.postURL, Toast.LENGTH_LONG).show();
-            if(utils.check_Internet()){
-                Toast.makeText(context, "Internet connection is available.", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(context, "Internet connection is not available.", Toast.LENGTH_LONG).show();
-            }
+
+            // if(utils.check_Internet()){
+            //     Toast.makeText(context, "Internet connection is available.", Toast.LENGTH_LONG).show();
+            // } else {
+            //     Toast.makeText(context, "Internet connection is not available.", Toast.LENGTH_LONG).show();
+            // }
         } else {
             Toast.makeText(context, "Location if off.", Toast.LENGTH_LONG).show();
         }
