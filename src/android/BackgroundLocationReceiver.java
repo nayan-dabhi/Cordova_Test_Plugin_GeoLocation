@@ -22,7 +22,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
     Location mCurrentLocation;
     ConnectivityManager mConnectivityManager;
     NetworkInfo mNetworkInfo;
-    List<NameValuePair> nameValuePairs;
+    public List<NameValuePair> nameValuePairs;
 
     @Override
     public void onReceive(Context context, Intent intent)
@@ -45,12 +45,12 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting()){
                 // Toast.makeText(context, "Internet is on.", Toast.LENGTH_LONG).show();
 
-                // nameValuePairs = new ArrayList<NameValuePair>();
-                // nameValuePairs.add(new BasicNameValuePair("user_id", bgGeoLoc.userId));
-                // nameValuePairs.add(new BasicNameValuePair("latitude", latitude));
-                // nameValuePairs.add(new BasicNameValuePair("longitude", longitude));
+                nameValuePairs = new ArrayList<NameValuePair>();
+                nameValuePairs.add(new BasicNameValuePair("user_id", bgGeoLoc.userId));
+                nameValuePairs.add(new BasicNameValuePair("latitude", latitude));
+                nameValuePairs.add(new BasicNameValuePair("longitude", longitude));
 
-                // Toast.makeText(context, nameValuePairs.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, nameValuePairs.toString(), Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(context, "Internet is off.", Toast.LENGTH_LONG).show();
             }
