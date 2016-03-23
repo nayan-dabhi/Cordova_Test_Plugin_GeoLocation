@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import android.os.AsyncTask;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 
 public class BackgroundLocationReceiver extends BroadcastReceiver
 {
