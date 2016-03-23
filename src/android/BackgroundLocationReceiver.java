@@ -10,6 +10,8 @@ import android.os.AsyncTask;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -43,6 +45,7 @@ public class BackgroundLocationReceiver extends BroadcastReceiver
             if(mNetworkInfo != null && mNetworkInfo.isConnectedOrConnecting()){
                 // Toast.makeText(context, "Internet is on.", Toast.LENGTH_LONG).show();
 
+                nameValuePairs = new ArrayList<NameValuePair>();
                 nameValuePairs.add(new BasicNameValuePair("user_id", bgGeoLoc.userId));
                 nameValuePairs.add(new BasicNameValuePair("latitude", latitude));
                 nameValuePairs.add(new BasicNameValuePair("longitude", longitude));
