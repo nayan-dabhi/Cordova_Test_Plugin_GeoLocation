@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -22,17 +23,26 @@ public class BgGeoLocation extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("start_update")) {
+        if (action.equalsIgnoreCase("start_update")) {
             JSONObject parameters = args.getJSONObject(0);
-            userId = parameters.getString("userId");
-            userEmail = parameters.getString("userEmail");
-            userLoginToken = parameters.getString("userLoginToken");
-            postURL = parameters.getString("postURL");
+            // userId = parameters.getString("userId");
+            // userEmail = parameters.getString("userEmail");
+            // userLoginToken = parameters.getString("userLoginToken");
+            // postURL = parameters.getString("postURL");
             timerInterval = Integer.parseInt(parameters.getString("timerInterval"));
+
+            SharedPreferences mSharedPreferences = cordova.getActivity().getSharedPreferences("locationPref", cordova.getActivity().getApplicationContext().MODE_WORLD_READABLE);
+            SharedPreferences.Editor prefsEditor = mSharedPreferences.edit();
+            prefsEditor.putString("userId", parameters.getString("userId"));
+            prefsEditor.putString("userEmail", parameters.getString("userEmail"));
+            prefsEditor.putString("userLoginToken", parameters.getString("userLoginToken"));
+            prefsEditor.putString("postURL", parameters.getString("postURL"));
+            prefsEditor.putInt("timerInterval",Integer.parseInt(parameters.getString("timerInterval")));
+            prefsEditor.commit();
 
             start_update(callbackContext);
             return true;
-        } else if (action.equals("stop_update")) {
+        } else if (action.equalsIgnoreCase("stop_update")) {
             stop_update(callbackContext);
             return true;
         } else {
@@ -59,6 +69,9 @@ public class BgGeoLocation extends CordovaPlugin {
 
     public void stop_update(CallbackContext callbackContext) {
         alarmManager.cancel(pendingIntent);
+        SharedPreferences mSharedPreferences = cordova.getActivity().getSharedPreferences("locationPref", cordova.getActivity().getApplicationContext().MODE_WORLD_READABLE);
+        mSharedPreferences.edit().clear().commit();
+
         JSONObject response = new JSONObject();
         try {
             response.put("status", "success");
