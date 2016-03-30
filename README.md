@@ -2,23 +2,8 @@
 This plugin used in cordova application for update user location in background mode.
 
 
-## Using
-Clone the plugin
+## Install
 
-    $ git clone https://github.com/nayan-dabhi/Cordova_Test_Plugin_GeoLocation
-
-Create a new Cordova Project
-
-    $ cordova create hello com.example.helloapp Hello
-
-Install iOS or Android platform
-
-    cordova platform add ios
-    cordova platform add android
-
-Install the plugin
-
-    $ cd hello
     $ cordova plugin add https://github.com/nayan-dabhi/Cordova_Test_Plugin_GeoLocation
 
 
